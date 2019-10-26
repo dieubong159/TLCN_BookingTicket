@@ -1,86 +1,110 @@
-import React from "react";
-import { View, Text, StyleSheet, TouchableOpacity, Image } from "react-native";
+import React, { useState } from "react";
+import {
+  View,
+  Text,
+  StyleSheet,
+  TouchableOpacity,
+  ImageBackground,
+  KeyboardAvoidingView,
+  Image
+} from "react-native";
 import HeaderSlogan from "../components/HeaderSlogan";
 import LoginMaterial from "../components/LoginMaterial";
 import SignUpMaterial from "../components/SignUpMaterial";
+import AccountTabButton from "../components/AccountTabButton";
+import { MaterialIcons } from "@expo/vector-icons";
+import AccountInfomation from "../components/AccountInfomation";
+import { calcWidth, calcHeigt } from "../../responsive/ratio.responsive";
 
 const AccountScreen = () => {
+  const [editState, setEditState] = useState(false);
+  const [loginState, setLoginState] = useState(false);
+  const [registerState, setRegisterState] = useState(false);
+
   return (
-    <View style={styles.screenContainer}>
-      <View style={styles.headerContainer}>
-        <HeaderSlogan />
-        <View style={styles.headerButtonContainer}>
-          <TouchableOpacity style={styles.headerButton}>
-            <Text style={styles.headerButtonText}>ĐĂNG NHẬP</Text>
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.headerButton}>
-            <Text style={styles.headerButtonText}>ĐĂNG KÝ</Text>
-          </TouchableOpacity>
+    <KeyboardAvoidingView behavior='padding'>
+      <View style={styles.screenContainer}>
+        <View style={styles.headerContainer}>
+          <HeaderSlogan />
+          {loginState === false ? (
+            <AccountTabButton setRegisterState={setRegisterState} />
+          ) : null}
+        </View>
+        <View
+          style={{
+            marginTop: calcHeigt(18),
+            position: "absolute",
+            alignSelf: "center"
+          }}
+        >
+          {loginState ? (
+            <ImageBackground
+              source={require("../../assets/potrait.jpg")}
+              style={styles.userImage}
+            >
+              {editState ? null : (
+                <TouchableOpacity
+                  style={styles.editButton}
+                  onPress={() => setEditState(true)}
+                >
+                  <MaterialIcons name='edit' style={styles.vectorEditIcon} />
+                </TouchableOpacity>
+              )}
+            </ImageBackground>
+          ) : null}
+        </View>
+        <View style={styles.contentContainer}>
+          {loginState ? (
+            <AccountInfomation
+              editState={editState}
+              setEditState={setEditState}
+              setLoginState={setLoginState}
+            />
+          ) : registerState ? (
+            <SignUpMaterial />
+          ) : (
+            <LoginMaterial setLoginState={setLoginState} />
+          )}
+
+          <View style={{ marginTop: calcHeigt(0.5) }}>
+            <TouchableOpacity style={styles.functionButton}>
+              <Image
+                style={styles.functionButtonImage}
+                source={require("../../assets/vietnam.png")}
+              />
+              <Text style={styles.functionButtonText}>NGÔN NGỮ</Text>
+            </TouchableOpacity>
+
+            <TouchableOpacity style={styles.functionButton}>
+              <Image
+                style={styles.functionButtonImage}
+                source={require("../../assets/team.png")}
+              />
+              <Text style={styles.functionButtonText}>GIỚI THIỆU</Text>
+            </TouchableOpacity>
+
+            <TouchableOpacity style={styles.functionButton}>
+              <Image
+                style={styles.functionButtonImage}
+                source={require("../../assets/contact-us.png")}
+              />
+              <Text style={styles.functionButtonText}>TRUNG TÂM HỖ TRỢ</Text>
+            </TouchableOpacity>
+          </View>
         </View>
       </View>
-
-      <View style={styles.contentContainer}>
-        <SignUpMaterial />
-
-        <View style={{ marginTop: 20 }}>
-          <TouchableOpacity style={styles.functionButton}>
-            <Image
-              style={styles.functionButtonImage}
-              source={require("../../assets/vietnam.png")}
-            />
-            <Text style={styles.functionButtonText}>NGÔN NGỮ</Text>
-          </TouchableOpacity>
-
-          <TouchableOpacity style={styles.functionButton}>
-            <Image
-              style={styles.functionButtonImage}
-              source={require("../../assets/team.png")}
-            />
-            <Text style={styles.functionButtonText}>GIỚI THIỆU</Text>
-          </TouchableOpacity>
-
-          <TouchableOpacity style={styles.functionButton}>
-            <Image
-              style={styles.functionButtonImage}
-              source={require("../../assets/contact-us.png")}
-            />
-            <Text style={styles.functionButtonText}>TRUNG TÂM HỖ TRỢ</Text>
-          </TouchableOpacity>
-        </View>
-      </View>
-    </View>
+    </KeyboardAvoidingView>
   );
 };
 
 const styles = StyleSheet.create({
   screenContainer: {
-    backgroundColor: "#F2EFEF"
+    backgroundColor: "white"
   },
   headerContainer: {
-    height: 220,
-    backgroundColor: "#7438FE"
-  },
-  headerButtonContainer: {
-    height: 40,
-    flexDirection: "row",
-    bottom: 0,
-    top: 148,
-    shadowOffset: { height: 10, width: 10 },
-    shadowRadius: 5,
-    shadowOpacity: 1.0,
-    shadowColor: "#000000",
-    elevation: 1
-  },
-  headerButton: {
-    backgroundColor: "white",
-    flex: 1,
-    flexDirection: "row",
-    justifyContent: "center"
-  },
-  headerButtonText: {
-    fontSize: 16,
-    alignSelf: "center",
-    color: "#454F63"
+    height: calcHeigt(28),
+    backgroundColor: "#7438FE",
+    flexDirection: "column"
   },
 
   contentContainer: {
@@ -88,28 +112,48 @@ const styles = StyleSheet.create({
     bottom: 0,
     right: 0,
     left: 0,
-    height: 450,
-    marginHorizontal: 30,
-    marginVertical: 30
+    height: calcHeigt(70),
+    marginHorizontal: calcWidth(8),
+    marginVertical: calcHeigt(4)
   },
 
   functionButton: {
-    marginTop: 15,
+    marginTop: calcHeigt(1.5),
     flexDirection: "row",
     borderRadius: 5,
     backgroundColor: "#454F63",
-    height: 45
+    height: calcHeigt(5)
   },
   functionButtonImage: {
-    height: 30,
-    width: 30,
+    height: calcHeigt(4),
+    width: calcWidth(8),
     alignSelf: "center",
-    marginHorizontal: 25
+    marginHorizontal: calcWidth(10)
   },
   functionButtonText: {
     color: "white",
     fontSize: 18,
     alignSelf: "center"
+  },
+  userImage: {
+    height: calcHeigt(19),
+    width: calcWidth(32),
+    alignSelf: "center",
+    justifyContent: "flex-end",
+    borderRadius: 15
+  },
+  vectorEditIcon: {
+    fontSize: 20,
+    color: "black",
+    alignSelf: "center"
+  },
+  editButton: {
+    borderRadius: 30,
+    height: calcHeigt(5),
+    width: calcWidth(8),
+    backgroundColor: "white",
+    alignSelf: "flex-end",
+    justifyContent: "center"
   }
 });
 

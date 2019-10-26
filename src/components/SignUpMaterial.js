@@ -1,5 +1,6 @@
 import React from "react";
 import { Text, StyleSheet, TouchableOpacity, TextInput } from "react-native";
+import { calcHeigt, calcWidth } from "../../responsive/ratio.responsive";
 
 const SignUpMaterial = () => {
   return (
@@ -45,28 +46,21 @@ const SignUpMaterial = () => {
 
 const styles = StyleSheet.create({
   textInput: {
-    height: 35,
-    backgroundColor: "white",
-    paddingLeft: 10,
+    height: calcHeigt(6),
+    backgroundColor: "#F2F2F2",
+    paddingLeft: calcWidth(3),
     textAlignVertical: "center",
-    marginBottom: 15,
-    borderRadius: 4
-  },
-  forgetPasswordButton: {
-    alignSelf: "center",
-    marginTop: 5
-  },
-  forgetPasswordButtonText: {
-    fontSize: 13,
-    color: "#78849E"
+    marginBottom: calcHeigt(1.5),
+    borderRadius: 4,
+    fontSize: 15
   },
   signupButton: {
-    marginTop: 8,
+    marginTop: calcHeigt(1.4),
     flexDirection: "row",
     justifyContent: "center",
     borderRadius: 5,
     backgroundColor: "#3ACCE1",
-    height: 45
+    height: calcHeigt(7)
   },
   signupButtonText: {
     color: "white",

@@ -1,5 +1,6 @@
 import React from "react";
 import { View, StyleSheet, TouchableOpacity } from "react-native";
+import { calcHeigt, calcWidth } from "../../responsive/ratio.responsive";
 import { Ionicons, FontAwesome } from "@expo/vector-icons";
 
 const BackButton = ({ navigation }) => {
@@ -27,11 +28,11 @@ const BackButton = ({ navigation }) => {
 const styles = StyleSheet.create({
   filterButton: {
     borderRadius: 50,
-    height: 40,
-    width: 40,
+    height: calcHeigt(6.5),
+    width: calcWidth(12),
     justifyContent: "center",
     backgroundColor: "#FFFFFF",
-    padding: 7,
+    padding: calcWidth(2),
     borderColor: "#212121",
     borderWidth: 1.5,
     flex: 1
@@ -43,20 +44,20 @@ const styles = StyleSheet.create({
   },
   backButton: {
     borderRadius: 50,
-    height: 40,
-    width: 40,
+    height: calcHeigt(6.5),
+    width: calcWidth(12),
     justifyContent: "center",
     backgroundColor: "#6947FC",
-    padding: 7,
+    padding: calcWidth(2),
     flex: 1
   },
   headerButtonContainer: {
-    marginTop: 35,
-    marginHorizontal: 20,
+    marginTop: calcHeigt(5),
+    marginHorizontal: calcWidth(5),
     flexDirection: "row"
   },
   logoButton: {
-    fontSize: 20,
+    fontSize: 22,
     color: "#FFFFFF",
     alignSelf: "center"
   }

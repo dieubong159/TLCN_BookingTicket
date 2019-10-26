@@ -2,6 +2,7 @@ import React from "react";
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import { Entypo } from "@expo/vector-icons";
 import BackButton from "./BackButton";
+import { calcHeigt, calcWidth } from "../../responsive/ratio.responsive";
 
 const HeaderBooking = ({ navigation, title }) => {
   return (
@@ -13,11 +14,14 @@ const HeaderBooking = ({ navigation, title }) => {
         style={{
           flexDirection: "row",
           justifyContent: "center",
-          marginVertical: 10
+          // marginTop: calcHeigt(1.3),
+          marginBottom: calcHeigt(1)
         }}
       >
         <Text style={styles.locationText}>Cà Mau</Text>
-        <TouchableOpacity style={{ marginHorizontal: 10, alignSelf: "center" }}>
+        <TouchableOpacity
+          style={{ marginHorizontal: calcWidth(4), alignSelf: "center" }}
+        >
           <Entypo name='swap' style={styles.logoButton} />
         </TouchableOpacity>
         <Text style={styles.locationText}>Tp. Hồ Chí Minh</Text>
@@ -30,7 +34,7 @@ const HeaderBooking = ({ navigation, title }) => {
 
 const styles = StyleSheet.create({
   sloganStyle: {
-    marginTop: 20,
+    // marginTop: calcHeigt(2),
     fontSize: 17,
     color: "white",
     alignSelf: "center"
@@ -49,7 +53,8 @@ const styles = StyleSheet.create({
     fontSize: 16,
     color: "#FFFFFF",
     alignSelf: "center",
-    marginBottom: 30
+    marginBottom: calcHeigt(2.5),
+    fontWeight: "bold"
   }
 });
 

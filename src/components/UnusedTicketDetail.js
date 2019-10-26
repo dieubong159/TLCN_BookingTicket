@@ -2,6 +2,7 @@ import React from "react";
 import { View, Text, StyleSheet, Image } from "react-native";
 import { EvilIcons } from "@expo/vector-icons";
 import { TouchableOpacity } from "react-native-gesture-handler";
+import { calcWidth, calcHeigt } from "../../responsive/ratio.responsive";
 
 const UnusedTicketDetail = () => {
   return (
@@ -66,20 +67,20 @@ const styles = StyleSheet.create({
   ticketContainer: {
     flexDirection: "row",
     borderRadius: 5,
-    shadowOffset: { height: 0, width: 3 },
+    shadowOffset: { height: 0, width: calcWidth(0.8) },
     shadowRadius: 5,
     shadowOpacity: 1.0,
-    marginTop: 15,
-    marginHorizontal: 12,
+    marginTop: calcHeigt(2.3),
+    marginHorizontal: calcWidth(3),
     shadowColor: "#000000",
     elevation: 2,
     backgroundColor: "white",
-    padding: 5,
-    height: 110
+    padding: calcWidth(1.2),
+    height: calcHeigt(15)
   },
   locationText: {
     fontSize: 14,
-    marginTop: 55
+    marginTop: calcHeigt(8)
   },
   timeText: {
     color: "#4D0099",
@@ -90,8 +91,8 @@ const styles = StyleSheet.create({
     color: "#3D4457"
   },
   imageStyle: {
-    height: 30,
-    width: 30
+    height: calcHeigt(5),
+    width: calcHeigt(5)
   },
   cancelButton: {
     backgroundColor: "red",

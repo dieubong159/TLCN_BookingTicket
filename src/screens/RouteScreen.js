@@ -2,6 +2,7 @@ import React from "react";
 import { StyleSheet, ImageBackground, View } from "react-native";
 import RouteDetail from "../components/RouteDetail";
 import HeaderBooking from "../components/HeaderBooking";
+import { calcHeigt } from "../../responsive/ratio.responsive";
 
 const RouteScreen = ({ navigation }) => {
   // console.log(navigation.state.routeName);
@@ -32,8 +33,8 @@ const styles = StyleSheet.create({
     flexDirection: "row"
   },
   backgroundImageStyle: {
-    width: 400,
-    height: 400,
+    width: "100%",
+    height: calcHeigt(50),
     position: "relative",
     alignSelf: "flex-start"
   }

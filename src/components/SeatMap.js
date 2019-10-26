@@ -1,11 +1,12 @@
 import React from "react";
 import { View, StyleSheet } from "react-native";
 import Seat from "../components/Seat";
+import { calcWidth } from "../../responsive/ratio.responsive";
 
 const SeatMap = () => {
   return (
     <>
-      <View style={{ margin: 5 }}>
+      <View style={{ margin: calcWidth(1.5) }}>
         <View
           style={{
             flexDirection: "row",

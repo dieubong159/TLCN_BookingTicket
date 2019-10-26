@@ -1,5 +1,6 @@
 import React from "react";
 import { View, TextInput, StyleSheet } from "react-native";
+import { calcWidth, calcHeigt } from "../../responsive/ratio.responsive";
 
 const PersonalInfoInput = ({ placeholder }) => {
   return (
@@ -19,17 +20,17 @@ const PersonalInfoInput = ({ placeholder }) => {
 const styles = StyleSheet.create({
   textInputBackground: {
     borderRadius: 7,
-    padding: 5,
-    marginHorizontal: 20,
-    height: 40,
+    padding: calcWidth(1),
+    marginHorizontal: calcWidth(3),
+    height: calcHeigt(5),
     flex: 1,
-    marginVertical: 5,
+    marginVertical: calcHeigt(0.5),
     backgroundColor: "#F2F2F2"
   },
   inputStyle: {
     flex: 1,
     fontSize: 15,
-    marginLeft: 10,
+    marginLeft: calcWidth(2.5),
     color: "#393C44"
   }
 });

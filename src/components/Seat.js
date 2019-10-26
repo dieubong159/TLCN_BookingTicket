@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { TouchableOpacity, StyleSheet, Text } from "react-native";
 import { MaterialIcons } from "@expo/vector-icons";
+import { calcWidth } from "../../responsive/ratio.responsive";
 
 const Seat = () => {
   const [color, setColor] = useState("#A9ACBB");
@@ -14,7 +15,10 @@ const Seat = () => {
       }}
       on
     >
-      <MaterialIcons name='event-seat' style={{ fontSize: 42, color: color }} />
+      <MaterialIcons
+        name='event-seat'
+        style={{ fontSize: calcWidth(9), color: color }}
+      />
       <Text style={styles.seatCode}>A1</Text>
     </TouchableOpacity>
   );
@@ -25,7 +29,7 @@ const styles = StyleSheet.create({
     color: "black",
     alignSelf: "center",
     position: "absolute",
-    fontSize: 15
+    fontSize: calcWidth(4.5)
   }
 });
 

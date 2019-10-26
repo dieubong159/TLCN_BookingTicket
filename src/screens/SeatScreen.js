@@ -10,6 +10,7 @@ import HeaderBooking from "../components/HeaderBooking";
 import RouteDetail from "../components/RouteDetail";
 import { AntDesign } from "@expo/vector-icons";
 import SeatMap from "../components/SeatMap";
+import { calcWidth, calcHeigt } from "../../responsive/ratio.responsive";
 
 const SeatScreen = ({ navigation }) => {
   return (
@@ -19,7 +20,7 @@ const SeatScreen = ({ navigation }) => {
         source={require("../../assets/background.png")}
       >
         <HeaderBooking navigation={navigation} title='Chọn chỗ ngồi của bạn' />
-        <RouteDetail action={true} />
+        <RouteDetail navigation={navigation} action={true} />
 
         <View style={styles.informationContainer}>
           <AntDesign name='infocirlceo' style={styles.logoInfomation} />
@@ -28,7 +29,7 @@ const SeatScreen = ({ navigation }) => {
       </ImageBackground>
 
       <View style={styles.seatContainer}>
-        <View style={{ flexDirection: "row", marginLeft: 15 }}>
+        <View style={{ flexDirection: "row", marginLeft: calcWidth(3.8) }}>
           <TouchableOpacity style={styles.floorTabButton}>
             <Text style={styles.floorTabButtonText}>TẦNG 1</Text>
           </TouchableOpacity>
@@ -39,19 +40,19 @@ const SeatScreen = ({ navigation }) => {
 
         <View style={styles.propBackgroundStyle}>
           <View style={styles.seatNotificationContainer}>
-            <View style={{ marginRight: 10, flexDirection: "row" }}>
+            <View style={{ marginRight: calcWidth(2.5), flexDirection: "row" }}>
               <View
                 style={{
                   backgroundColor: "#A9ACBB",
-                  width: 20,
-                  height: 20,
-                  marginRight: 5,
+                  width: calcWidth(5),
+                  height: calcHeigt(3),
+                  marginRight: calcWidth(1),
                   alignSelf: "center"
                 }}
               />
               <Text style={{ color: "#A9ACBB", fontSize: 15 }}>Đã đặt</Text>
             </View>
-            <View style={{ marginRight: 10, flexDirection: "row" }}>
+            <View style={{ marginRight: calcWidth(2.5), flexDirection: "row" }}>
               <View
                 style={{
                   backgroundColor: "#A9ACBB",
@@ -63,7 +64,7 @@ const SeatScreen = ({ navigation }) => {
               />
               <Text style={{ color: "#A9ACBB" }}>Trống</Text>
             </View>
-            <View style={{ marginRight: 10, flexDirection: "row" }}>
+            <View style={{ marginRight: calcWidth(2.5), flexDirection: "row" }}>
               <View
                 style={{
                   backgroundColor: "#F7B10A",
@@ -97,8 +98,8 @@ const styles = StyleSheet.create({
     flex: 1
   },
   backgroundImageStyle: {
-    width: 400,
-    height: 400,
+    width: "100%",
+    height: calcHeigt(50),
     position: "relative",
     alignSelf: "flex-start"
   },
@@ -110,7 +111,7 @@ const styles = StyleSheet.create({
   },
   logoInfomation: {
     fontSize: 18,
-    marginRight: 10,
+    marginRight: calcWidth(2.5),
     alignSelf: "center",
     color: "white"
   },
@@ -121,29 +122,29 @@ const styles = StyleSheet.create({
   propBackgroundStyle: {
     backgroundColor: "white",
     alignSelf: "center",
-    height: 305,
-    width: 350,
-    paddingHorizontal: 10,
-    paddingVertical: 10,
+    height: calcHeigt(42),
+    width: calcWidth(90),
+    paddingHorizontal: calcWidth(2.5),
+    paddingVertical: calcHeigt(1.5),
     borderRadius: 15,
     // marginTop: 100,
     borderWidth: 2,
     shadowColor: "#000",
-    shadowOffset: { width: 0, height: 3 },
+    shadowOffset: { width: 0, height: calcHeigt(0.5) },
     shadowOpacity: 0.3,
     shadowRadius: 4.65,
     elevation: 7,
     borderColor: "#C7B0FA"
   },
   bookingTicketButtonStyle: {
-    width: 330,
-    height: 40,
+    width: calcWidth(80),
+    height: calcHeigt(5),
     backgroundColor: "#F7B10A",
     alignSelf: "center",
     alignItems: "center",
     flexDirection: "row",
     borderRadius: 15,
-    marginVertical: 15
+    marginVertical: calcHeigt(1.5)
   },
   buttonTitleStyle: {
     flex: 1,
@@ -153,11 +154,11 @@ const styles = StyleSheet.create({
   },
   floorTabButton: {
     height: "100%",
-    width: 100,
+    width: calcWidth(23),
     alignItems: "flex-start",
     backgroundColor: "#665EFF",
-    padding: 5,
-    marginLeft: 2,
+    padding: calcWidth(1),
+    marginLeft: calcWidth(0.5),
     borderRadius: 8
   },
   floorTabButtonText: {
@@ -165,12 +166,12 @@ const styles = StyleSheet.create({
   },
   seatContainer: {
     position: "absolute",
-    marginBottom: 30,
+    marginBottom: calcHeigt(5),
     alignSelf: "flex-end"
   },
   seatNotificationContainer: {
     flexDirection: "row",
-    marginHorizontal: 10,
+    marginHorizontal: calcWidth(2.5),
     justifyContent: "space-between",
     alignItems: "center"
   }

@@ -1,92 +1,118 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   View,
   Text,
   StyleSheet,
   ImageBackground,
-  TouchableOpacity
+  TouchableOpacity,
+  KeyboardAvoidingView
 } from "react-native";
 import SearchPropButton from "../components/SearchPropButton";
+import { calcHeigt, calcWidth } from "../../responsive/ratio.responsive";
 
 const FindTicketScreen = ({ navigation }) => {
+  const [startLocation, setStartLocation] = useState("");
+  const [endLocation, setEndLocation] = useState("");
+  const [startTime, setStartTime] = useState("");
+
+  // console.log(startLocation);
+  // console.log(endLocation);
+  // console.log(startTime);
   return (
-    <View
-      style={{
-        justifyContent: "center",
-        alignItems: "center",
-        height: "100%",
-        flexDirection: "row"
-      }}
-    >
-      <ImageBackground
-        style={styles.backgroundImageStyle}
-        source={require("../../assets/background.png")}
-      >
-        <View style={styles.sloganContainerStyle}>
-          <Text style={styles.sloganStyle}>Chào mừng</Text>
-          <Text style={styles.sloganStyle}>Khởi hành cùng chúng tôi</Text>
-        </View>
-      </ImageBackground>
+    <KeyboardAvoidingView behavior='height'>
       <View
         style={{
-          position: "absolute",
-          marginBottom: 30,
-          alignSelf: "flex-end"
+          justifyContent: "center",
+          alignItems: "center",
+          height: "100%",
+          flexDirection: "row"
         }}
       >
-        <View style={styles.propBackgroundStyle}>
-          <SearchPropButton placeholder='Địa điểm đi' iconname='location' />
-          <SearchPropButton placeholder='Địa điểm đến' iconname='location' />
-          <SearchPropButton placeholder='Ngày đi' iconname='calendar' />
-        </View>
-        <TouchableOpacity onPress={() => navigation.navigate("Route")}>
-          <View style={styles.findTicketButtonStyle}>
-            <Text style={styles.buttonTitleStyle}>Tìm vé</Text>
+        <ImageBackground
+          style={styles.backgroundImageStyle}
+          source={require("../../assets/background.png")}
+        >
+          <View style={styles.sloganContainerStyle}>
+            <Text style={styles.sloganStyle}>Chào mừng</Text>
+            <Text style={styles.sloganStyle}>Khởi hành cùng chúng tôi</Text>
           </View>
-        </TouchableOpacity>
+        </ImageBackground>
+        <View
+          style={{
+            position: "absolute",
+            marginBottom: calcHeigt(5),
+            alignSelf: "flex-end"
+          }}
+        >
+          <View style={styles.propBackgroundStyle}>
+            <SearchPropButton
+              placeholder='Địa điểm đi'
+              iconname='location'
+              setContent={setStartLocation}
+              content={startLocation}
+            />
+            <SearchPropButton
+              placeholder='Địa điểm đến'
+              iconname='location'
+              content={endLocation}
+              setContent={setEndLocation}
+            />
+            <SearchPropButton
+              placeholder='Ngày đi'
+              iconname='calendar'
+              content={startTime}
+              setContent={setStartTime}
+            />
+          </View>
+          <TouchableOpacity onPress={() => navigation.navigate("Route")}>
+            <View style={styles.findTicketButtonStyle}>
+              <Text style={styles.buttonTitleStyle}>Tìm vé</Text>
+            </View>
+          </TouchableOpacity>
+        </View>
       </View>
-    </View>
+    </KeyboardAvoidingView>
   );
 };
 
 const styles = StyleSheet.create({
   backgroundImageStyle: {
-    width: 400,
-    height: 400,
+    width: "100%",
+    height: calcHeigt(50),
     position: "relative",
     alignSelf: "flex-start"
   },
   sloganContainerStyle: {
-    marginTop: 100
+    marginTop: calcHeigt(13.5)
   },
   sloganStyle: {
-    fontSize: 30,
+    fontSize: 25,
     color: "white",
     alignSelf: "center"
   },
   propBackgroundStyle: {
     backgroundColor: "white",
     alignSelf: "center",
-    height: 300,
-    width: 350,
-    paddingHorizontal: 10,
-    paddingVertical: 10,
+    height: calcHeigt(40),
+    width: calcWidth(87),
+    paddingHorizontal: calcWidth(2),
+    paddingVertical: calcHeigt(2),
     borderRadius: 15,
-    marginTop: 100,
+    marginTop: calcHeigt(17),
     borderWidth: 2,
     shadowOffset: { width: 2, height: 2 },
     shadowOpacity: 0.5,
     borderColor: "#C7B0FA"
   },
   findTicketButtonStyle: {
-    width: 330,
-    height: 60,
+    width: calcWidth(87),
+    height: calcHeigt(7.3),
     backgroundColor: "#7438FE",
     alignSelf: "center",
     alignItems: "center",
     flexDirection: "row",
     borderRadius: 15,
-    marginVertical: 20
+    marginVertical: calcHeigt(3.5)
   },
   buttonTitleStyle: {
     flex: 1,

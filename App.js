@@ -63,7 +63,7 @@ const navigator = createStackNavigator(
     ConfirmBooking: ConfirmBookingScreen
   },
   {
-    initialRouteName: "ConfirmBooking",
+    initialRouteName: "FindTicket",
     headerMode: "screen",
     defaultNavigationOptions: {
       header: null
